@@ -35,6 +35,12 @@ def get_birthday():
     next = next.replace(year=next.year + 1)
   return (next - today).days
 
+def get_date():
+  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + "乌鲁木齐"
+  a = requests.get(url).json()
+  other_date=a['data']['list'][0]
+  return other_date['pm25'],other_date['airQuality'],other_date['wind']
+
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
   if words.status_code != 200:
@@ -62,11 +68,12 @@ year=date.today().year
 month=date.today().month
 day=date.today().day
 weekday=get_week_day(date.today())
+pm25,airq,wind=get_date()
 
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weekday":{"value":weekday},"day":{"value":day},"month":{"value":month},"year":{"value":year},"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"wind":{"value":wind},"airq":{"value":airq},"pm25":{"value":pm25},"weekday":{"value":weekday},"day":{"value":day},"month":{"value":month},"year":{"value":year},"weather":{"value":wea},"temperature":{"value":temperature},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
