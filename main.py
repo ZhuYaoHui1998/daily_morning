@@ -63,7 +63,7 @@ def get_week_day(date):
   day = date.weekday()  # weekday()可以获得是星期几
   return week_day[day]
 
-
+weekday=get_week_day(date.today())
 year=date.today().year
 month=date.today().month
 day=date.today().day
