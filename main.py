@@ -6,6 +6,7 @@ import requests
 import os
 import random
 
+
 today = datetime.now()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
@@ -46,8 +47,12 @@ def get_random_color():
 
 client = WeChatClient(app_id, app_secret)
 
+today = datetime.datetime.today()
+year,month,day = today.year,today.month,today.day
+weekday = datetime.date(year,month,day ).strftime("%A")
+
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weekday":{"value":weekday},"day":{"value":day},"month":{"value":month},"year":{"value":year},"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
