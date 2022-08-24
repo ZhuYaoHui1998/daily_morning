@@ -44,12 +44,26 @@ def get_words():
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
+def get_week_day(date):
+  week_day = {
+    0: '星期一',
+    1: '星期二',
+    2: '星期三',
+    3: '星期四',
+    4: '星期五',
+    5: '星期六',
+    6: '星期日',
+  }
+  day = date.weekday()  # weekday()可以获得是星期几
+  return week_day[day]
+
+
+year=date.today().year
+month=date.today().month
+day=date.today().day
+weekday=get_week_day(date.today())
 
 client = WeChatClient(app_id, app_secret)
-
-today = datetime.today()
-year,month,day = str(today.year),str(today.month),str(today.day)
-weekday = str(datetime.date(year,month,day ).strftime("%A"))
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
