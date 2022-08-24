@@ -48,8 +48,8 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 today = datetime.today()
-year,month,day = today.year,today.month,today.day
-weekday = datetime.date(year,month,day ).strftime("%A")
+year,month,day = str(today.year),str(today.month),str(today.day)
+weekday = str(datetime.date(year,month,day ).strftime("%A"))
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
