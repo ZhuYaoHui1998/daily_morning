@@ -67,7 +67,7 @@ def get_week_day(date):
 year=date.today().year
 month=date.today().month
 day=date.today().day
-weekday=get_week_day(date.today())
+wea, temperature, highest, lowest = get_weather()
 pm25,airq,wind=get_date()
 
 client = WeChatClient(app_id, app_secret)
