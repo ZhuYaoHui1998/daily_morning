@@ -73,7 +73,7 @@ def format_temperature(temperature):
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
-def get_week_day(date):
+def get_week_day():
   week_day = {
     0: '星期一',
     1: '星期二',
@@ -110,7 +110,7 @@ data = {
     "color": get_random_color()
   },
     "weekday": {
-    "value": get_week_day(date.today()),
+    "value": get_week_day(),
     "color": get_random_color()
   },
   "date": {
