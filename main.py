@@ -72,6 +72,7 @@ def format_temperature(temperature):
 # 随机颜色
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
+
 def get_week_day(date):
   week_day = {
     0: '星期一',
@@ -82,7 +83,7 @@ def get_week_day(date):
     5: '星期六',
     6: '星期日',
   }
-  day = date.weekday()  # weekday()可以获得是星期几
+  day = date.(today).weekday()  # weekday()可以获得是星期几
   return week_day[day]
 
 try:
