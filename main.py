@@ -8,7 +8,7 @@ import random
 import pytz
 cn = pytz.country_timezones('cn')
 tz = pytz.timezone('Asia/Shanghai')
-today = datetime.now(tz).strftime("%Y-%m-%d")
+today = datetime.now(tz)
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
@@ -27,7 +27,7 @@ def get_weather():
   return weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
 def get_count():
-  delta = today - datetime.strptime(start_date, "%Y-%m-%d")
+  delta = today.strftime("%Y-%m-%d") - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
 def get_birthday():
