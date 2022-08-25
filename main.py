@@ -16,7 +16,7 @@ app_secret = os.getenv('APP_SECRET')
 
 user_ids = os.getenv('USER_ID', '').split("\n")
 template_id = os.getenv('TEMPLATE_ID')
-keyword="记得想我,"
+keyword=""
 if app_id is None or app_secret is None:
   print('请设置 APP_ID 和 APP_SECRET')
   exit(422)
@@ -104,14 +104,14 @@ def set_keyword():
     keyword="今日有雨,出门记得带伞,注意保暖哦,"
   else:
     keyword="记得想我,"
-set_keyword()
+  return keyword
 data = {
   "city": {
     "value": city,
     "color": get_random_color()
   },
     "keyword": {
-    "value": keyword
+    "value": set_keyword()
   },
     "weekday": {
     "value": get_week_day(),
