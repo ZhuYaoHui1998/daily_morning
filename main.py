@@ -109,7 +109,7 @@ data = {
     "color": get_random_color()
   },
     "weekday": {
-    "value": get_week_day(today()),
+    "value": get_week_day(date.today()+timedelta(hours=8)),
     "color": get_random_color()
   },
   "date": {
