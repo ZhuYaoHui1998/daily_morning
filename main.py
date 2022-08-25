@@ -8,7 +8,7 @@ import random
 import pytz
 cn = pytz.country_timezones('cn')
 tz = pytz.timezone('Asia/Shanghai')
-today = datetime.now(tz)
+today = datetime.now(tz).strftime("%Y-%m-%d")
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
@@ -27,7 +27,7 @@ def get_weather():
   return weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
 def get_count():
-  delta = today.strftime("%Y-%m-%d") - datetime.strptime(start_date, "%Y-%m-%d")
+  delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
 def get_birthday():
@@ -74,6 +74,6 @@ pm25,airq,wind=get_date()
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-data = {"wind":{"value":wind,"color":get_random_color()},"airq":{"value":airq,"color":get_random_color()},"weekday":{"value":weekday},"day":{"value":day},"month":{"value":month},"year":{"value":year},"date":{"value":today.strftime('%Y年%m月%d日')},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(),"color":get_random_color()},"highest": {"value":highest,"color":get_random_color()},"lowest":{"value":lowest, "color":get_random_color()}}
+data = {"wind":{"value":wind,"color":get_random_color()},"airq":{"value":airq,"color":get_random_color()},"weekday":{"value":weekday},"day":{"value":day},"month":{"value":month},"year":{"value":year},"date":{"value":today},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(),"color":get_random_color()},"highest": {"value":highest,"color":get_random_color()},"lowest":{"value":lowest, "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(datetime.now())
