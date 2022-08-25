@@ -104,6 +104,7 @@ def set_keyword():
     keyword="今日有雨,出门记得带伞,注意保暖哦,"
   else:
     keyword="记得想我,"
+set_keyword()
 data = {
   "city": {
     "value": city,
