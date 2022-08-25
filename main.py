@@ -101,7 +101,8 @@ def set_keyword():
     keyword="今天是大晴天,注意防晒避暑哦"
   elif weather['weather'] == '小雨' or weather['weather'] == '中雨' or weather['weather'] == '大雨' or weather['weather'] == '阵雨' or weather['weather'] == '雷阵雨' or weather['weather'] == '暴雨':
     keyword="今日有雨,出门记得带伞,注意保暖哦"
-  elif keyword="记得想我,"
+  else:
+    keyword="记得想我,"
 data = {
   "city": {
     "value": city,
