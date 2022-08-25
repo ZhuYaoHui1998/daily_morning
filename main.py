@@ -5,8 +5,9 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
-
-
+import pytz
+cn = pytz.country_timezones('cn')
+tz = pytz.timezone('Asia/Shanghai')
 today = datetime.now()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
