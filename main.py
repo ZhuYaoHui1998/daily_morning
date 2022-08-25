@@ -16,7 +16,7 @@ app_secret = os.getenv('APP_SECRET')
 
 user_ids = os.getenv('USER_ID', '').split("\n")
 template_id = os.getenv('TEMPLATE_ID')
-
+keyword=""
 if app_id is None or app_secret is None:
   print('请设置 APP_ID 和 APP_SECRET')
   exit(422)
@@ -72,6 +72,18 @@ def format_temperature(temperature):
 # 随机颜色
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
+def get_week_day(date):
+  week_day = {
+    0: '星期一',
+    1: '星期二',
+    2: '星期三',
+    3: '星期四',
+    4: '星期五',
+    5: '星期六',
+    6: '星期日',
+  }
+  day = date.weekday()  # weekday()可以获得是星期几
+  return week_day[day]
 
 try:
   client = WeChatClient(app_id, app_secret)
@@ -84,9 +96,19 @@ weather = get_weather()
 if weather is None:
   print('获取天气失败')
   exit(422)
+def set_keyword():
+  if (weather['weather'] = '晴' or weather['weather'] ='多云') and math.floor(weather['high'])>30:
+    keyword="今天是大晴天,注意防晒避暑哦"
+  elif weather['weather'] = '小雨' or weather['weather'] = '中雨' or weather['weather'] = '大雨' or weather['weather'] = '阵雨' or weather['weather'] = '雷阵雨' or weather['weather'] = '暴雨':
+    keyword="今日有雨,出门记得带伞,注意保暖哦"
+  elif keyword="记得想我,"
 data = {
   "city": {
     "value": city,
+    "color": get_random_color()
+  },
+    "weekday": {
+    "value": get_week_day(today())
     "color": get_random_color()
   },
   "date": {
