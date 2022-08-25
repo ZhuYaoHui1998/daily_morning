@@ -106,11 +106,11 @@ data = {
     "color": get_random_color()
   },
     "airq": {
-    "value": math.floor(weather['airQuality']),
+    "value": weather['airQuality'],
     "color": get_random_color()
   },
     "wind": {
-    "value": math.floor(weather['wind']),
+    "value": weather['wind'],
     "color": get_random_color()
   },
     "pm25": {
