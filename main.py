@@ -109,6 +109,10 @@ data = {
     "value": city,
     "color": get_random_color()
   },
+    "keyword": {
+    "value": keyword,
+    "color": get_random_color()
+  },
     "weekday": {
     "value": get_week_day(),
     "color": get_random_color()
